@@ -22,7 +22,7 @@ public class BulletScript : MonoBehaviour
 	void Update()
 	{
 		Vector3 newPosition = transform.position + transform.forward * speed * Time.deltaTime;
-		newPosition.y = transform.position.y;
+		newPosition.z = transform.position.z;
 		transform.position = newPosition;
 
 		//Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);

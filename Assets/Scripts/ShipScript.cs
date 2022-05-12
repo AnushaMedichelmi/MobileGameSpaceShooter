@@ -90,6 +90,7 @@ public class ShipScript : MonoBehaviour
         transform.rotation = endRotation;
 
         Shoot();
+        isRotating=false;
 
     }
 

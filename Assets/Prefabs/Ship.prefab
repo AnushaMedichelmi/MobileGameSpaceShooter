@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8926666861418252780}
   - component: {fileID: 8926666861418252783}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShipSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8926666861418252782}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8926666862622299196}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &8926666861418252783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 8926666862622299196}
   - component: {fileID: 8926666862622299197}
   - component: {fileID: 8926666862622299194}
+  - component: {fileID: 844436690}
   m_Layer: 3
   m_Name: Ship
   m_TagString: Untagged
@@ -131,7 +132,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -169,8 +170,24 @@ PolygonCollider2D:
       - {x: -0.36871302, y: -0.8342946}
       - {x: -0.371285, y: -0.8624514}
       - {x: -0.3573698, y: -0.8626287}
-      - {x: 0.30973226, y: -0.5141122}
+      - {x: -0.34516934, y: -0.8209275}
+      - {x: 0.5119527, y: -0.8427204}
       - {x: 0.1967353, y: 0.24825639}
+--- !u!114 &844436690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8926666862622299199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5464cda514d74843817719d0d0461b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 2
+  movementSpeed: 1
+  launcher: {fileID: 8926666863388332776}
 --- !u!1 &8926666863388332779
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8926666863388332776}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: BulletLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,10 +211,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8926666863388332779}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8926666862622299196}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}

@@ -41,6 +41,7 @@ public class ObjectPool : MonoBehaviour
 		{
 			obj = GameObject.Instantiate(prefab) as GameObject;
 			obj.transform.parent = parent;
+			
 		}
 
 		obj.SetActive(true);
