@@ -5,6 +5,12 @@ using UnityEngine;
 public class PrefabManager : MonoBehaviour
 {
 
+    // An array of large asteroid prefabs. Order doesn't matter.
+    public GameObject[] largeAsteroidPrefabs;
+
+    // An array of small asteroid prefabs. Order doesn't matter.
+    public GameObject[] smallAsteroidPrefabs;
+
     #region SINGLETON
 
     private static PrefabManager instance;
@@ -23,6 +29,23 @@ public class PrefabManager : MonoBehaviour
             }
             return instance;
         }
+    }
+
+    public GameObject GetLargeAsteroidPrefab()
+    {
+        if (largeAsteroidPrefabs.Length > 0)
+            return largeAsteroidPrefabs[Random.Range(0, largeAsteroidPrefabs.Length)];
+
+        return null;
+    }
+   
+    // Return a small asteroid prefab.
+    public GameObject GetSmallAsteroidPrefab()
+    {
+        if (smallAsteroidPrefabs.Length > 0)
+            return smallAsteroidPrefabs[Random.Range(0, smallAsteroidPrefabs.Length)];
+
+        return null;
     }
     #endregion
     // Start is called before the first frame update

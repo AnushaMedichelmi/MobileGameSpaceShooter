@@ -9,7 +9,7 @@ namespace MyMobileGameSpace
         #region EVENTS
 
         public delegate void TapAction(Touch touch);
-        static event TapAction onTapAction;
+        public static event TapAction onTapAction;
         #endregion
 
         #region  PUBLIC VARIABLES
