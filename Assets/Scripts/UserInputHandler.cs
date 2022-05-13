@@ -15,7 +15,7 @@ namespace MyMobileGameSpace
         #region  PUBLIC VARIABLES
 
         public float tapMaxMovement=50f;                    //Maximum pixel a tap can move
-        private Vector2 movement;                         //Movement vector will trac khow far you move
+        private Vector2 movement;                         //Movement vector will track how far you move
         private bool tapGestureFailed=false;             //Tap gesture will become true ,if tap moves too far
         #endregion
 

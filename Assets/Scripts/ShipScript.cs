@@ -83,7 +83,7 @@ public class ShipScript : MonoBehaviour
         Quaternion endRotation = Quaternion.LookRotation(tempPoint, Vector3.forward); //This rotation will look at touchpoint in up direction
         for (float i = 0; i < 1f; i+=Time.deltaTime)
         {
-            transform.rotation = Quaternion.Slerp(startRotation, endRotation, 1);
+            transform.rotation = Quaternion.Slerp(startRotation, endRotation, 1);    //Slerp is used for smooth rotation
             yield return null;
         }
                                                                                
