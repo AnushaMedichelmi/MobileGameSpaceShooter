@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// A pool of objects that can be reused.
 public class ObjectPool : MonoBehaviour
 {
 
