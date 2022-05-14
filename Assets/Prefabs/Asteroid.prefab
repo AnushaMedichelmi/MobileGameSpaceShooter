@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 94785686228630839}
   - component: {fileID: 94785686228630837}
   - component: {fileID: 94785686228630836}
+  - component: {fileID: 1741710491165944335}
   m_Layer: 7
   m_Name: Asteroid
   m_TagString: Untagged
@@ -84,6 +85,18 @@ PolygonCollider2D:
       - {x: -0.5877852, y: -0.80901706}
       - {x: 0.58778536, y: -0.80901694}
       - {x: 0.9510565, y: 0.30901712}
+--- !u!114 &1741710491165944335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94785686228630838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14235b912f950b49a686d802d774083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &94785686572049188
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 94785686572049189}
   - component: {fileID: 94785686572049194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AsteroidSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
