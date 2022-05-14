@@ -56,7 +56,7 @@ public class PoolManager : MonoBehaviour
 	public void CreatePool(GameObject prefab, int initialCapacity)
 	{
 		if (pools == null)
-			pools = new Dictionary<string, ObjectPool>();
+			pools = new Dictionary<string, ObjectPool>();                 //Dictionary are in great use when we have large list
 
 		ObjectPool newPool = new ObjectPool(prefab, initialCapacity);
 		pools.Add(prefab.name, newPool);
