@@ -25,12 +25,12 @@ public class BulletScript : MonoBehaviour
 		newPosition.z = transform.position.z;
 		transform.position = newPosition;
 
-		//Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
+		Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
 
-		//if (viewportPosition.x > 1 || viewportPosition.x < 0 || viewportPosition.y > 1 || viewportPosition.y < 0)
-		//{
-		//	PoolManager.Instance.Recycle(Constants.BULLET_PREFAB_NAME, gameObject);
-		//}
+		if (viewportPosition.x > 1 || viewportPosition.x < 0 || viewportPosition.y > 1 || viewportPosition.y < 0)
+		{
+			PoolManager.Instance.Recycle(Constants.BULLET_PREFAB_NAME, gameObject);
+		}
 	}
 	#endregion
 
