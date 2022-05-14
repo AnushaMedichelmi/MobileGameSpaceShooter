@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+// Singleton to manage the game state.
 public class GameManager : MonoBehaviour
 {
 
