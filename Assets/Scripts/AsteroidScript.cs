@@ -14,7 +14,7 @@ public class AsteroidScript : MonoBehaviour
 	private Rigidbody2D rigidbody2D;
 	PolygonCollider2D collider2D;
 	private int points = 100;
-	private GameManager gameManager;
+	private GameManager gameManager;               //refering to game manager
     #endregion
 
 
@@ -22,7 +22,7 @@ public class AsteroidScript : MonoBehaviour
     #region MONOBEHAVIOUR METHODS
     void OnEnable()
 	{
-		isLarge = (Random.Range(0, 2) == 0);
+		isLarge = (Random.Range(0, 2) == 0);             //Takes  values of 0 and 1(false or true)
 		ResetFromPrefab();
 		ApplyForce();
 	}
@@ -35,12 +35,14 @@ public class AsteroidScript : MonoBehaviour
 
 	void Awake()
 	{
+		rigidbody2D = GetComponent<Rigidbody2D>();	
 		gameManager = GameManager.Instance;
 		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-		polyCollider = (PolygonCollider2D)collider2D;
+		collider2D=GetComponent<PolygonCollider2D>();
+		polyCollider = GetComponent<PolygonCollider2D>();
 	}
 
-	void OnTriggerEnter2D(Collider2D collision)
+	void OnTriggerEnter2D(Collider2D collision)                     //Further information about the other collider is reported in the Collider2D parameter passed during the call.
 	{
 		if (collision.gameObject.layer == Constants.SHIP_LAYER)
 		{
@@ -116,9 +118,9 @@ public class AsteroidScript : MonoBehaviour
 		if (isLarge)
 		{
 			GameObject prefab = PrefabManager.Instance.GetLargeAsteroidPrefab();
-			spriteRenderer.sprite = prefab.GetComponent<SpriteRenderer>().sprite;
+			spriteRenderer.sprite = prefab.GetComponentInChildren<SpriteRenderer>().sprite;
 
-			PolygonCollider2D prefabCollider = ((PolygonCollider2D)prefab .GetComponent<Collider2D>());
+			PolygonCollider2D prefabCollider = prefab .GetComponent<PolygonCollider2D>();
 			polyCollider.pathCount = prefabCollider.pathCount;
 
 			for (int i = 0; i < prefabCollider.pathCount; i++)
@@ -127,9 +129,9 @@ public class AsteroidScript : MonoBehaviour
 		else
 		{
 			GameObject prefab = PrefabManager.Instance.GetSmallAsteroidPrefab();
-			spriteRenderer.sprite = prefab.GetComponent<SpriteRenderer>().sprite;
+			spriteRenderer.sprite = prefab.GetComponentInChildren<SpriteRenderer>().sprite;
 
-			PolygonCollider2D prefabCollider = ((PolygonCollider2D)prefab.GetComponent<Collider2D>());
+			PolygonCollider2D prefabCollider = prefab.GetComponent<PolygonCollider2D>();
 			polyCollider.pathCount = prefabCollider.pathCount;
 
 			for (int i = 0; i < prefabCollider.pathCount; i++)
