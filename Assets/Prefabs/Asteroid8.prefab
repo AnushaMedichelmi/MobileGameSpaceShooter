@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2854833387670056288}
   - component: {fileID: 2854833387670056291}
+  - component: {fileID: 6438201631087283123}
+  - component: {fileID: 4871805886755760444}
   m_Layer: 0
   m_Name: Asteroid8
   m_TagString: Untagged
@@ -44,6 +46,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14235b912f950b49a686d802d774083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!60 &6438201631087283123
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854833387670056289}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.015221832, y: 0.8773911}
+      - {x: -0.2828667, y: 0.77213514}
+      - {x: -0.52675635, y: 0.29330215}
+      - {x: -0.5956251, y: -0.5822652}
+      - {x: -0.43849438, y: -0.8325893}
+      - {x: 0.1713426, y: -0.95045036}
+      - {x: 0.60600984, y: -0.20596349}
+      - {x: 0.6078739, y: 0.60675174}
+      - {x: 0.46389705, y: 0.79617655}
+--- !u!50 &4871805886755760444
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854833387670056289}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2854833388900915520
 GameObject:
   m_ObjectHideFlags: 0
@@ -54,7 +111,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2854833388900915523}
   - component: {fileID: 2854833388900915525}
-  - component: {fileID: 2854833388900915522}
   m_Layer: 0
   m_Name: asteroid_large_08
   m_TagString: Untagged
@@ -127,91 +183,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &2854833388900915522
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2854833388900915520}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.75, y: 1.75}
-    newSize: {x: 1.75, y: 1.75}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.114999995, y: -0.675}
-      - {x: -0.175, y: -0.615}
-      - {x: -0.565, y: -0.615}
-      - {x: -0.565, y: -0.715}
-      - {x: -0.45499998, y: -0.85499996}
-      - {x: -0.285, y: -0.875}
-      - {x: 0.005, y: -0.875}
-      - {x: 0.005, y: -0.84499997}
-      - {x: -0.044999998, y: -0.765}
-      - {x: -0.074999996, y: -0.73499995}
-    - - {x: -0.044999998, y: -0.625}
-      - {x: -0.085, y: -0.655}
-      - {x: -0.085, y: -0.765}
-      - {x: 0.035, y: -0.875}
-      - {x: 0.105, y: -0.875}
-      - {x: 0.195, y: -0.85499996}
-      - {x: 0.21499999, y: -0.825}
-      - {x: 0.21499999, y: -0.775}
-      - {x: 0.074999996, y: -0.625}
-    - - {x: 0.49499997, y: 0.755}
-      - {x: 0.45499998, y: 0.755}
-      - {x: 0.415, y: 0.745}
-      - {x: 0.085, y: 0.114999995}
-      - {x: 0.074999996, y: -0.195}
-      - {x: 0.074999996, y: -0.635}
-      - {x: 0.175, y: -0.79499996}
-      - {x: 0.265, y: -0.79499996}
-      - {x: 0.385, y: -0.685}
-      - {x: 0.585, y: -0.185}
-      - {x: 0.585, y: 0.60499996}
-    - - {x: -0.035, y: 0.085}
-      - {x: -0.105, y: 0.065}
-      - {x: -0.305, y: -0.015}
-      - {x: -0.305, y: -0.585}
-      - {x: -0.295, y: -0.60499996}
-      - {x: -0.155, y: -0.655}
-      - {x: 0.035, y: -0.655}
-      - {x: 0.065, y: -0.565}
-      - {x: 0.065, y: 0.085}
-    - - {x: -0.585, y: 0.16499999}
-      - {x: -0.59499997, y: 0.155}
-      - {x: -0.59499997, y: -0.615}
-      - {x: -0.585, y: -0.625}
-      - {x: -0.325, y: -0.625}
-      - {x: -0.325, y: 0.035}
-      - {x: -0.515, y: 0.16499999}
-    - - {x: 0.36499998, y: 0.645}
-      - {x: 0.42499998, y: 0.715}
-      - {x: 0.42499998, y: 0.78499997}
-      - {x: 0.375, y: 0.805}
-      - {x: 0.185, y: 0.84499997}
-      - {x: 0.044999998, y: 0.875}
-      - {x: -0.114999995, y: 0.875}
-      - {x: -0.275, y: 0.815}
-      - {x: -0.39499998, y: 0.575}
-      - {x: -0.575, y: 0.225}
-      - {x: -0.575, y: 0.205}
-      - {x: -0.53499997, y: 0.16499999}
-      - {x: -0.33499998, y: 0.005}
-      - {x: -0.24499999, y: 0.005}
-      - {x: -0.085, y: 0.065}
-      - {x: 0.055, y: 0.095}
-      - {x: 0.145, y: 0.21499999}
