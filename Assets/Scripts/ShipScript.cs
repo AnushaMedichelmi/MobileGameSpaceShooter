@@ -7,14 +7,16 @@ public class ShipScript : MonoBehaviour
 
     #region  PUBLIC VARIABLES
 
-    public float rotationSpeed=10f;          //Rotaion of ship in degrees per second
-    public float movementSpeed=20f;          //The movement of ship by force applied in per second
+    public float rotationSpeed = 10f;          //Rotaion of ship in degrees per second
+    public float movementSpeed = 20f;          //The movement of ship by force applied in per second
+    public bool useAccelerometer = false;
+    Rigidbody2D rigidbody2D;
 
     #endregion
 
     #region PRIVATE VARIABLES
 
-   private bool isRotating=false;
+    private bool isRotating = false;
     public Transform launcher;
     private const string TURN_COROUTINE_FUNCTION = "TurnRotateOnTap";
     private GameManager gameManager;
@@ -25,6 +27,11 @@ public class ShipScript : MonoBehaviour
     #endregion
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        rigidbody2D=GetComponent<Rigidbody2D>();
+    }
     private void Start()
     {
         gameManager = GameManager.Instance;
@@ -33,46 +40,71 @@ public class ShipScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnEnable()                //When gameobject is active ,then we are subscribing 
     {
-        MyMobileGameSpace.UserInputHandler.onTapAction+=TowardsTouch;
+        if (!useAccelerometer)
+        {
+            MyMobileGameSpace.UserInputHandler.onTapAction += TowardsTouch;
+            MyMobileGameSpace.UserInputHandler.OnPanBegan += StopTurn;
+            MyMobileGameSpace.UserInputHandler.OnPanHeld += MoveTowardsTouch;
+        }
+        else
+        {
+            MyMobileGameSpace.UserInputHandler.OnAccelerometerChanged += MoveWithAcceleration;
+
+            MyMobileGameSpace.UserInputHandler.onTapAction += TowardsTouch;
+        }
     }
+
 
     private void OnDisable()                 //When gameobject is inactive ,then we are desubscribing 
     {
-         MyMobileGameSpace.UserInputHandler.onTapAction -=TowardsTouch;
+        if (!useAccelerometer)
+        {
+
+            MyMobileGameSpace.UserInputHandler.onTapAction -= TowardsTouch;
+            MyMobileGameSpace.UserInputHandler.OnPanBegan -= StopTurn;
+            MyMobileGameSpace.UserInputHandler.OnPanHeld -= MoveTowardsTouch;
+        }
+        else
+        {
+            MyMobileGameSpace.UserInputHandler.OnAccelerometerChanged -= MoveWithAcceleration;
+            MyMobileGameSpace.UserInputHandler.onTapAction -= TowardsTouch;
+
+        }
     }
 
-    #region MY PUBLIC METHODS
-    #endregion
+
+
+
 
     public void TowardsTouch(Touch touch)
     {
-      Vector3 worldTouchPosition=  Camera.main.ScreenToWorldPoint(touch.position);    //It converts screen from pixels coordinates  to world coordinates
+        Vector3 worldTouchPosition = Camera.main.ScreenToWorldPoint(touch.position);    //It converts screen from pixels coordinates  to world coordinates
         StopCoroutine(TURN_COROUTINE_FUNCTION);
-        StartCoroutine(TURN_COROUTINE_FUNCTION,worldTouchPosition);
+        StartCoroutine(TURN_COROUTINE_FUNCTION, worldTouchPosition);
     }
 
-   /* IEnumerator TurnRotateMoveTowardsTap(Vector3 tempPoint)
-    {
-        isRotating=true;
-        //tempPoint=tempPoint-this.transform.position;   //To find the difference between touch position and current position
-       // tempPoint.z=transform.position.z;                //assigning ship position to touch position
-        Quaternion startRotation=this.transform.rotation;                              //The rotation start point
-        Quaternion endRotation=Quaternion.LookRotation(tempPoint,Vector3.up);         //This rotation will look at touchpoint in up direction 
-        float time=Quaternion.Angle(startRotation,endRotation)/rotationSpeed;                  //Angle between two rotations 
+    /* IEnumerator TurnRotateMoveTowardsTap(Vector3 tempPoint)
+     {
+         isRotating=true;
+         //tempPoint=tempPoint-this.transform.position;   //To find the difference between touch position and current position
+        // tempPoint.z=transform.position.z;                //assigning ship position to touch position
+         Quaternion startRotation=this.transform.rotation;                              //The rotation start point
+         Quaternion endRotation=Quaternion.LookRotation(tempPoint,Vector3.up);         //This rotation will look at touchpoint in up direction 
+         float time=Quaternion.Angle(startRotation,endRotation)/rotationSpeed;                  //Angle between two rotations 
 
-        for(float i=0;i<time; i=i+Time.deltaTime)
-        {
-           transform.rotation= Quaternion.Slerp(startRotation,endRotation,i);
-        }
-        transform.rotation = endRotation; //we need to put shoot functionality here
-        isRotating = false;
+         for(float i=0;i<time; i=i+Time.deltaTime)
+         {
+            transform.rotation= Quaternion.Slerp(startRotation,endRotation,i);
+         }
+         transform.rotation = endRotation; //we need to put shoot functionality here
+         isRotating = false;
 
-        yield return null;
-    }*/
+         yield return null;
+     }*/
 
     IEnumerator TurnRotateOnTap(Vector3 tempPoint)
     {
@@ -81,16 +113,16 @@ public class ShipScript : MonoBehaviour
         tempPoint.z = transform.position.z;                //assigning the touch point of z to ship position of z
         Quaternion startRotation = this.transform.rotation;                              //touch the value of ship rotation 
         Quaternion endRotation = Quaternion.LookRotation(tempPoint, Vector3.forward); //This rotation will look at touchpoint in up direction
-        for (float i = 0; i < 1f; i+=Time.deltaTime)
+        for (float i = 0; i < 1f; i += Time.deltaTime)
         {
             transform.rotation = Quaternion.Slerp(startRotation, endRotation, 1);    //Slerp is used for smooth rotation
             yield return null;
         }
-                                                                               
+
         transform.rotation = endRotation;
 
         Shoot();
-        isRotating=false;
+        isRotating = false;
 
     }
 
@@ -126,10 +158,27 @@ public class ShipScript : MonoBehaviour
         }
 
         spriteRenderer.enabled = true;
-       GetComponent< Collider2D>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
     }
 
 
     #region MY PRIVATE METHODS
-    #endregion
+    private void MoveWithAcceleration(Vector3 acceleration)
+    {
+        if (!isRotating)
+        {
+            acceleration.z = 0;
+
+            if (acceleration.sqrMagnitude >= 0.03f)
+            {
+                Vector3 targetPoint = transform.position + acceleration;
+
+                rigidbody2D.AddForce(transform.forward * movementSpeed * Time.deltaTime);
+                TurnRotateOnTap(targetPoint);
+
+            }
+        }
+        #endregion
+    }
 }
+
